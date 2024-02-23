@@ -7,23 +7,23 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Bot {
-    private static Dotenv config;
+  private static Dotenv config;
 
-    public static void main(String[] args) throws Exception
-    {
-        config = Dotenv.configure().load();
-        String token = config.get("BOT_TOKEN");
+  public static void main(String[] args) throws Exception {
+    config = Dotenv.configure().load();
+    String token = config.get("BOT_TOKEN");
 
-        JDA api = JDABuilder.createDefault(token)
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                .addEventListeners(new Listener())
-                .setActivity(Activity.playing("Filtering Spam Messages"))
-                .build();
+    JDA api =
+        JDABuilder.createDefault(token)
+            .enableIntents(GatewayIntent.MESSAGE_CONTENT)
+            .addEventListeners(new Listener())
+            .setActivity(Activity.playing("Filtering Spam Messages"))
+            .build();
 
-        api.awaitReady();
-    }
+    api.awaitReady();
+  }
 
-    public Dotenv getConfig() {
-        return config;
-    }
- }
+  public Dotenv getConfig() {
+    return config;
+  }
+}
