@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion")
-    implementation("ch.qos.logback:logback-classic:1.3.12")
+    implementation("ch.qos.logback:logback-classic:1.5.0")
     implementation("io.github.cdimascio:dotenv-java:3.0.0")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
