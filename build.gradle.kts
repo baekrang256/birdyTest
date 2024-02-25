@@ -1,14 +1,17 @@
 plugins {
-    application
+    id("application")
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("java")
 }
 
-application.mainClass = "com.example.Birdy.Bot"
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
 val jdaVersion = "5.0.0-beta.20"
+
+application {
+    mainClass = "org.example.Bot"
+}
 
 repositories {
     mavenCentral()
@@ -20,6 +23,7 @@ dependencies {
     implementation("io.github.cdimascio:dotenv-java:3.0.0")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.mockito:mockito-core:5.+")
 }
 
 tasks.withType<JavaCompile> {

@@ -10,8 +10,8 @@ public class Bot {
   private static Dotenv config;
 
   public static void main(String[] args) throws Exception {
-    config = Dotenv.configure().load();
-    String token = config.get("BOT_TOKEN");
+    setConfig();
+    String token = getToken();
 
     JDA api =
         JDABuilder.createDefault(token)
@@ -23,7 +23,15 @@ public class Bot {
     api.awaitReady();
   }
 
-  public Dotenv getConfig() {
+  private static void setConfig() {
+    config = Dotenv.configure().load();
+  }
+
+  public static Dotenv getConfig() {
     return config;
+  }
+
+  public static String getToken() {
+    return config.get("BOT_TOKEN");
   }
 }
