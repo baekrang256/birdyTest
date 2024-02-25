@@ -34,7 +34,7 @@ jobs:
         gradle-version: '8.5'
         
     - name: Build with Gradle 8.5
-      run: gradle build
+      run: ./gradlew -b ci.gradle package
 
   dependency-submission:
 
