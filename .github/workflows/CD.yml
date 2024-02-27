@@ -1,0 +1,34 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          rsync -avz --exclude '.git*' --exclude '.github' --exclude '.env.example' ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/birdy
+          ssh ${{ secrets.USER }}@${{ secrets.HOST }} 'bash -s' << EOF
+            cd ~/birdy
+            mkdir .env
+            
+            chmod +x ./gradlew
+            ./gradlew stopBot
+            ./gradlew build -x test
+            ./gradlew runBot
+          
