@@ -2,6 +2,7 @@ plugins {
     id("application")
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("java")
+    kotlin("jvm")
 }
 
 group = "org.example"
@@ -24,6 +25,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.mockito:mockito-core:5.+")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.withType<JavaCompile> {
@@ -32,9 +34,11 @@ tasks.withType<JavaCompile> {
 
     // Set this to the version of java you want to use,
     // the minimum required for JDA is 1.8
-    sourceCompatibility = "1.8"
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(21)
 }

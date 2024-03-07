@@ -1,37 +1,33 @@
-package org.example;
+package org.example
 
-import io.github.cdimascio.dotenv.Dotenv;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.requests.GatewayIntent;
+import io.github.cdimascio.dotenv.Dotenv
+import net.dv8tion.jda.api.JDABuilder
+import net.dv8tion.jda.api.entities.Activity
+import net.dv8tion.jda.api.requests.GatewayIntent
 
-public class Bot {
-  private static Dotenv config;
+object Bot {
+  private var config: Dotenv? = null
 
-  public static void main(String[] args) throws Exception {
-    setConfig();
-    String token = getToken();
+  @Throws(Exception::class)
+  @JvmStatic
+  fun main(args: Array<String>) {
+    setConfig()
+    val token = token
 
-    JDA api =
+    val api =
         JDABuilder.createDefault(token)
             .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-            .addEventListeners(new Listener())
+            .addEventListeners(Listener())
             .setActivity(Activity.playing("Filtering Spam Messages"))
-            .build();
+            .build()
 
-    api.awaitReady();
+    api.awaitReady()
   }
 
-  private static void setConfig() {
-    config = Dotenv.configure().load();
+  private fun setConfig() {
+    config = Dotenv.configure().load()
   }
 
-  public static Dotenv getConfig() {
-    return config;
-  }
-
-  public static String getToken() {
-    return config.get("BOT_TOKEN");
-  }
+  private val token: String
+    get() = config!!["BOT_TOKEN"]
 }
