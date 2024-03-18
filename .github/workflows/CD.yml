@@ -40,7 +40,7 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull baekrang256/birdy:latest
-            docker stop bot || true
-            docker rm bot || true
-            docker run -d --name bot baekrang256/birdy:latest
+            sudo docker pull baekrang256/birdy:latest
+            sudo docker stop bot || true
+            sudo docker rm bot || true
+            sudo docker run -d --name bot baekrang256/birdy:latest
