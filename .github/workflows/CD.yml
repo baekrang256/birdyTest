@@ -44,3 +44,4 @@ jobs:
             sudo docker stop bot || true
             sudo docker rm bot || true
             sudo docker run -d -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} --name bot baekrang256/birdy:latest
+            sudo docker image prune -f

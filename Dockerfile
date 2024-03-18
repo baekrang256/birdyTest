@@ -1,4 +1,4 @@
-FROM gradle:jdk21 as builder
+FROM gradle:jdk21-alpine as builder
 LABEL authors="Seiyeon Cho"
 
 # working direcotry
