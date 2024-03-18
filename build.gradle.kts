@@ -38,6 +38,11 @@ tasks.withType<JavaCompile> {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.shadowJar {
+    archiveFileName.set("birdy.jar")
+}
+
 kotlin {
     jvmToolchain(21)
 }
