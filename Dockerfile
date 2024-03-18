@@ -7,6 +7,6 @@ RUN ./gradlew shadowJar
 
 # run stage image
 FROM openjdk:21-jdk
-COPY --from=build /home/gradle/src/build/libs/birdy.jar /app/
+COPY --from=builder /home/gradle/src/build/libs/birdy.jar /app/
 WORKDIR /app
 CMD ["java", "-jar", "birdy.jar"]
