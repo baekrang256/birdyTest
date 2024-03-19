@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
+import org.example.commands.ExclamListener;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -21,7 +22,7 @@ class ListenerTest {
   @Mock MessageCreateAction msgCreateAction;
   @Mock User user;
   String content;
-  Listener listener;
+  ExclamListener listener;
 
   /*
    * Message event has quite complicated structure.
@@ -35,7 +36,7 @@ class ListenerTest {
     when(event.getMessage()).thenReturn(msg);
     when(event.getChannel()).thenReturn(msgChannelUnion);
     when(msgChannelUnion.sendMessage(anyString())).thenReturn(msgCreateAction);
-    listener = new Listener();
+    listener = new ExclamListener();
   }
 
   @Test
