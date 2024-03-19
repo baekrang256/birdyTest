@@ -43,5 +43,8 @@ jobs:
             sudo docker pull baekrang256/birdy:latest
             sudo docker stop bot || true
             sudo docker rm bot || true
-            sudo docker run -d -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} --name bot baekrang256/birdy:latest
+            sudo docker run -d \
+            -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} \
+            -e LAB_SERV_ID=${{ secrets.LAB_SERV_ID }} \
+            --name bot baekrang256/birdy:latest
             sudo docker image prune -f
