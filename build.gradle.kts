@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion")
-    implementation("ch.qos.logback:logback-classic:1.5.3")
+    implementation("ch.qos.logback:logback-classic:1.5.6")
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.mockito:mockito-core:5.+")
