@@ -8,7 +8,7 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
-val jdaVersion = "5.0.0-beta.22"
+val jdaVersion = "5.0.0-beta.23"
 
 application {
     mainClass = "org.example.Bot"
